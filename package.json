@@ -1,0 +1,16 @@
+{
+  "name": "testcafe-selector-resolution-test",
+  "version": "0.1.0",
+  "description": "Test case for TestCafé Selector resolution in async forEach",
+  "main": "index.html",
+  "author": "Mike Thompson",
+  "license": "MIT",
+  "scripts": {
+    "start": "sirv . --port 8000 --quiet",
+    "test-chrome": "testcafe chrome:headless ./test.js"
+  },
+  "devDependencies": {
+    "sirv-cli": "^2.0.2",
+    "testcafe": "^1.18.1"
+  }
+}
