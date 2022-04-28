@@ -1,32 +1,19 @@
 import { ClientFunction, Selector, t } from 'testcafe';
 
-class PageModel {
-  constructor() {
-    this.indexes = Selector('.index');
-    this.names = Selector('.name');
-  }
-}
-
-const model = new PageModel();
-
-const results = [
-  { index: '1', name: 'a' },
-  { index: '2', name: 'b' },
-  { index: '3', name: 'c' },
-];
-
+const results = ['1', '2', '3'];
 const resultsReversed = results.concat([]).reverse();
 
-fixture`Selector implicit resolution test`
+fixture`Implicit Selector resolution in async forEach`
   .page`http://localhost:8000/index.html`
 
 test('list reverses successfully', async () => {
+  const listItems = Selector('li');
   const iterator = Array(3).keys();
 
   Array.from(iterator).forEach(async (i) => {
+    console.log('Loop 1:', i);
     await t
-      .expect(model.indexes.nth(i).innerText).eql(results[i].index)
-      .expect(model.names.nth(i).innerText).eql(results[i].name);
+      .expect(listItems.nth(i).innerText).eql(results[i]);
   });
 
   const reverseListItems = ClientFunction(() => {
@@ -41,8 +28,8 @@ test('list reverses successfully', async () => {
   await reverseListItems();
 
   Array.from(iterator).forEach(async (i) => {
+    console.log('Loop 2:', i);
     await t
-    .expect(model.indexes.nth(i).innerText).eql(resultsReversed[i].index)
-    .expect(model.names.nth(i).innerText).eql(resultsReversed[i].name);
+      .expect(listItems.nth(i).innerText).eql(resultsReversed[i]);
   });
 });

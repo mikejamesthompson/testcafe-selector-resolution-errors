@@ -1,7 +1,7 @@
 {
-  "name": "testcafe-selector-resolution-test",
+  "name": "testcafe-selector-resolution-errors",
   "version": "0.1.0",
-  "description": "Test case for TestCafé Selector resolution in async forEach",
+  "description": "Test case for TestCafé implicit Selector resolution errors in async forEach",
   "main": "index.html",
   "author": "Mike Thompson",
   "license": "MIT",
